@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Your AI Spend Audit Results</title>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+    <header>
+        <h1>🔍 Your Audit Results</h1>
+    </header>
+
+    <main>
+        <div class="savings-hero">
+            <div class="savings-amount" id="heroMonthly">$0</div>
+            <div class="savings-label">potential monthly savings</div>
+            <div class="savings-annual" id="heroAnnual"></div>
+        </div>
+
+        <div id="resultsList"></div>
+
+        <div id="credexBanner" style="display:none" class="credex-banner">
+            <h3>use credex to save more</h3>
+            <p>
+                there are significant savings possible in your Audit. 
+                on Credex you can get dicounted Ai credits — 
+                same tools, lower price.
+            </p>
+            <a href="https://credex.rocks" target="_blank" class="btn-credex">
+                Book FREE Consultation now →
+            </a>
+        </div>
+
+        <div class="email-section">
+            <h3>📧 Full Report on Email</h3>
+            <p>Save your Audit to get PDF report</p>
+            <input type="email" id="leadEmail" placeholder="tumhara@email.com"/>
+            <input type="text" id="leadCompany" placeholder="Company name (optional)"/>
+            <button class="btn-primary" onclick="captureEmail()">
+                Send Report →
+            </button>
+        </div>
+
+        <div style="text-align:center; margin-top:1rem;">
+            <a href="index.html" class="btn-back">← Edit</a>
+        </div>
+    </main>
+
+    <script src="audit.js"></script>
+    <script src="results.js"></script>
+</body>
+</html>

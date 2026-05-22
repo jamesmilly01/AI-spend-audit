@@ -43,7 +43,7 @@
                 <div class="row">
                     <div class="field">
                         <label class="form-label">Plan</label>
-                        <select class="chatgpt_plan form-select">
+                        <select class="chatgpt_plan form-select" id="chatgpt_plan">
                             <option value=""> -don't use</option>
                             <option value="plus">Plus ($20 / mo)</option>
                             <option value="team">Team ($25/user/mo)</option>
@@ -66,7 +66,7 @@
                 <div class="row">
                     <div class="field">
                         <label class="form-label">Plan</label>
-                        <select class="claude_plan form-select">
+                        <select class="claude_plan form-select" id="claude_plan">
                             <option value="">— don't use</option>
                             <option value="pro">Pro ($20/mo)</option>
                             <option value="max">Max ($100/mo)</option>
@@ -90,7 +90,7 @@
                 <div class="row">
                     <div class="field">
                         <label class="form-label">Plan</label>
-                        <select class="claude_plan form-select">
+                        <select class="copilot_plan form-select" id="copilot_plan">
                             <option value="">— don't use</option>
                             <option value="pro">Individual ($10/mo)</option>
                             <option value="max">Business ($19/user/mo)</option>
@@ -112,7 +112,7 @@
                 <div class="row">
                     <div class="field">
                         <label class="form-label">Plan</label>
-                        <select class="claude_plan form-select">
+                        <select class="gemini_plan form-select" id="gemini_plan">
                             <option value="">— don't use</option>
                             <option value="pro">Pro ($20/mo)</option>
                             <option value="max">Ultra (custom)</option>
@@ -128,6 +128,29 @@
                         <input type="number" class="form-control" id="gemini_spend" min="0" placeholder="0">
                     </div>
                 </div>
+            </section>
+            <section class="tool-card section mb-4">
+                <h3 class="mb-3">Cursor</h3>
+                <div class="row">
+                    <div class="field">
+                        <label class="form-label">Plan</label>
+                        <select class="form-select" id="cursor_plan">
+                            <option value="">— don't use</option>
+                            <option value="hobby">Hobby (Free)</option>
+                            <option value="pro">Pro ($20/mo)</option>
+                            <option value="business">Business ($40/user/mo)</option>
+                            <option value="enterprise">Enterprise</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label class="form-label">Seats</label>
+                        <input type="number" class="form-control" id="cursor_seats" min="1" value="1">
+                    </div>
+                    <div class="field">
+                        <label class="form-label">Monthly cost</label>
+                        <input type="number" class="form-control" id="cursor_spend" min="0" placeholder="0">
+                    </div>
+                </div>  
             </section>
 
             <button type="submit" class="btn btn-dark btn-primary">Audit</button>

@@ -10,25 +10,25 @@ window.addEventListener('load', () => {
             const spendEl = document.getElementById(tool + '_spend')
             if(data[tool]){
                 if(planEl) planEl.value = data[tool].plan || ''
-                if(seatEl) seatEl.value = data[tool].seats || 1
+                if(seatsEl) seatsEl.value = data[tool].seats || 1
                 if(spendEl) spendEl.value = data[tool].spend || 0
             }
         })
     }
 });
 
-document.getElementById('auditform').addEventListener('submit', (e) => {
+document.getElementById('auditForm').addEventListener('submit', (e) => {
     e.preventDefault()
 
     const auditData = {}
     TOOLS.forEach(tool => {
         auditData[tool] = {
             plan: document.getElementById(tool+'_plan').value,
-            seats: document.getElementById(tool+'_seats').value || 1,
-            spend: document.getElementById(tool+'_spend').value || 0
+            seats: parseInt(document.getElementById(tool+'_seats').value || 1),
+            spend: parseFloat(document.getElementById(tool+'_spend').value || 0)
         }
     }) 
-    auditData.teamSize = document.getElementById('teamSize').value
+    auditData.teamSize = parseInt(document.getElementById('teamSize').value || 1)
     auditData.useCase = document.getElementById('useCase').value
 
     localStorage.setItem('auditData', JSON.stringify(auditData))
