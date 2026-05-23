@@ -49,3 +49,30 @@ across all plan combinations.
 **Plan for tomorrow:**
 Build shareable URL feature.
 Polish the UI for better visual quality.
+
+## Day 3 — 2026-05-23
+
+**Hours worked:** 4
+
+**What I did:**
+Built shareable URL feature — audit data is encoded 
+using btoa/encodeURIComponent and appended to the URL 
+as a query parameter. Sensitive data is stripped from 
+the public version. Fixed InvalidCharacterError by 
+using encodeURIComponent before btoa encoding.
+Added share button on results page.
+
+**What I learned:**
+btoa() fails with special characters — need 
+encodeURIComponent + unescape wrapper to handle 
+Unicode safely. URLSearchParams API for reading 
+query parameters cleanly.
+
+**Blockers / what I'm stuck on:**
+Email capture is still a placeholder — needs 
+Supabase backend.
+
+**Plan for tomorrow:**
+Set up Supabase for lead storage.
+Integrate Gemini API for personalized audit summary.
+Add real email capture logic.
