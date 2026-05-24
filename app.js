@@ -32,5 +32,6 @@ document.getElementById('auditForm').addEventListener('submit', (e) => {
     auditData.useCase = document.getElementById('useCase').value
 
     localStorage.setItem('auditData', JSON.stringify(auditData))
+    localStorage.removeItem('auditSummary')
     window.location.href = 'results.html'
 });
