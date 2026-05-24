@@ -76,3 +76,47 @@ Supabase backend.
 Set up Supabase for lead storage.
 Integrate Gemini API for personalized audit summary.
 Add real email capture logic.
+
+## Day 4 — 2026-05-24
+
+**Hours worked:** 5
+
+**What I did:**
+Set up Supabase project and created the leads table 
+with Row Level Security enabled. Added insert policy 
+to allow anonymous lead capture. Integrated Supabase 
+client in results.js for real email capture and storage.
+
+Integrated Gemini 1.5 Flash API for personalized 
+AI-generated audit summary. Added localStorage caching 
+to avoid repeated API calls and stay within free tier 
+rate limits. Implemented graceful fallback summary 
+in case of API failure.
+
+Fixed config.js with all API keys and added it to 
+.gitignore to prevent secrets from being pushed to 
+GitHub.
+
+**What I learned:**
+Supabase RLS must be enabled with an insert policy 
+for anonymous clients to write data — without the 
+policy, all inserts are blocked by default.
+Gemini free tier has a strict rate limit of 2 requests 
+per minute — caching API responses in localStorage 
+is essential to avoid 429 errors.
+API keys must never be committed to GitHub — 
+.gitignore is the first line of defense.
+
+**Blockers / what I'm stuck on:**
+Gemini API hitting 429 rate limits frequently on 
+free tier. Fallback summary is working correctly 
+as a backup. Will test live API response after 
+rate limit resets.
+Transactional email (Resend) not yet integrated — 
+currently only saving to Supabase.
+
+**Plan for tomorrow:**
+Deploy the project on Vercel.
+Add Open Graph meta tags for shareable link previews.
+Integrate Resend for transactional email confirmation.
+Write automated tests for audit engine.
