@@ -4,7 +4,18 @@ export default async function handler(req, res) {
     }
 
     try {
-        const { email, company, total_monthly_savings, total_annual_savings, audit_data, share_id } = req.body
+        let body = req.body
+        if (typeof body === 'string') {
+            body = JSON.parse(body)
+        }
+        const { email, company, total_monthly_savings, total_annual_savings, audit_data, share_id } = body
+        if (!email) {
+            return res.status(400).json({ error: 'Email is required' })
+        }
+
+        if (!process.env.SUPABASE_URL || !process.env.SUPABASE_ANON_KEY) {
+            return res.status(500).json({ error: 'Supabase credentials not set' })
+        }
 
         const response = await fetch(
             `${process.env.SUPABASE_URL}/rest/v1/leads`,
