@@ -1,4 +1,4 @@
-const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+
 function loadFromURL() {
     const params = new URLSearchParams(window.location.search)
     const encoded = params.get('audit')
@@ -123,14 +123,16 @@ function copyShareLink() {
     })
 }
 async function generateAISummary(results, totalMonthlySavings, totalAnnualSavings) {
+    const summaryDiv = document.getElementById('summaryText')
+    if (isSharedView) return
 const cachedSummary = localStorage.getItem('auditSummary')
 if (cachedSummary) {
     summaryDiv.innerHTML = `<p>${cachedSummary}</p>`
     return
 }
-    const summaryDiv = document.getElementById('summaryText')
     
-    if (isSharedView) return
+    
+    
 
     try {
         const toolsList = results.map(r => 
@@ -161,7 +163,6 @@ if (data.error) throw new Error(data.error)
 
 summaryDiv.innerHTML = `<p>${data.summary}</p>`
 localStorage.setItem('auditSummary', data.summary)
-localStorage.setItem('auditSummary', text)
 
 
     } catch (err) {
