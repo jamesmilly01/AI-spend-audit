@@ -146,31 +146,21 @@ Total potential annual savings: $${totalAnnualSavings}
 
 Write a concise 80-100 word personalized summary of their AI spending situation. Be specific, mention actual numbers, and give one clear action they should take first. Be direct and professional, not salesy.`
 
-        const response = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent?key=${GEMINI_API_KEY}`,
-    {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            contents: [{
-                parts: [{ text: prompt }]
-            }]
-        })
-    }
-)
+       const response = await fetch('/api/gemini', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ prompt })
+})
 
 if (!response.ok) {
     throw new Error(`API error: ${response.status}`)
 }
 
 const data = await response.json()
+if (data.error) throw new Error(data.error)
 
-if (!data.candidates || !data.candidates[0]) {
-    throw new Error('No response from Gemini')
-}
-
-const text = data.candidates[0].content.parts[0].text
-summaryDiv.innerHTML = `<p>${text}</p>`
+summaryDiv.innerHTML = `<p>${data.summary}</p>`
+localStorage.setItem('auditSummary', data.summary)
 localStorage.setItem('auditSummary', text)
 
 
@@ -204,18 +194,21 @@ async function captureEmail() {
     try {
         const shareId = Math.random().toString(36).substr(2, 9)
 
-        const { error } = await supabaseClient
-            .from('leads')
-            .insert({
-                email: email,
-                company: company || null,
-                total_monthly_savings: totalMonthlySavings,
-                total_annual_savings: totalAnnualSavings,
-                audit_data: JSON.parse(localStorage.getItem('auditData')),
-                share_id: shareId
-            })
+        const response = await fetch('/api/save-lead', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+        email,
+        company: company || null,
+        total_monthly_savings: totalMonthlySavings,
+        total_annual_savings: totalAnnualSavings,
+        audit_data: JSON.parse(localStorage.getItem('auditData')),
+        share_id: Math.random().toString(36).substr(2, 9)
+    })
+})
 
-        if (error) throw error
+const data = await response.json()
+if (!data.success) throw new Error(data.error)
 
         btn.textContent = 'Saved!'
         document.querySelector('.email-section').innerHTML = `
