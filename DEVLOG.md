@@ -120,3 +120,78 @@ Deploy the project on Vercel.
 Add Open Graph meta tags for shareable link previews.
 Integrate Resend for transactional email confirmation.
 Write automated tests for audit engine.
+
+## Day 5 — 2026-05-25
+
+**Hours worked:** 5
+
+**What I did:**
+Deployed the project to Vercel. Moved all API calls 
+to Vercel Serverless Functions (/api/gemini and 
+/api/save-lead) to prevent API keys from being 
+exposed in client-side code. Added environment 
+variables in Vercel dashboard. Fixed module.exports 
+syntax issue in Vercel Functions — export default 
+was not working correctly. Debugged Gemini API 500 
+errors via Vercel function logs.
+
+**What I learned:**
+Vercel Functions require module.exports syntax for 
+vanilla JS projects, not ES module export default. 
+Environment variables must be set in Vercel dashboard 
+and project must be redeployed for them to take effect.
+API keys in client-side JavaScript are never safe — 
+even with .gitignore, keys are visible in browser 
+DevTools. Serverless functions are the correct 
+solution for vanilla JS projects.
+
+**Blockers / what I'm stuck on:**
+Gemini API returning 500 errors intermittently — 
+fallback summary is showing instead of AI-generated 
+one. Suspected cause is rate limiting on free tier 
+or environment variable not loading correctly.
+Resend transactional email not yet implemented.
+
+**Plan for tomorrow:**
+Write all remaining MD files — README, GTM, 
+ECONOMICS, ARCHITECTURE, REFLECTION, LANDING_COPY, 
+METRICS, USER_INTERVIEWS, TESTS, PROMPTS, 
+PRICING_DATA. Conduct and document user interviews.
+
+## Day 6 — 2026-05-26
+
+**Hours worked:** 6
+
+**What I did:**
+Completed all required markdown documentation files:
+README.md, ARCHITECTURE.md, PRICING_DATA.md, 
+PROMPTS.md, TESTS.md, REFLECTION.md, GTM.md, 
+ECONOMICS.md, LANDING_COPY.md, METRICS.md.
+Wrote and ran 7 automated tests for the audit 
+engine — all passing locally via npm test.
+Configured GitHub Actions CI workflow.
+Conducted 3 user interviews via WhatsApp with 
+student developers — documented in USER_INTERVIEWS.md.
+Verified Vercel deployment is live and accessible.
+
+**What I learned:**
+User interviews revealed that even non-paying 
+users clearly understand the problem of AI tool 
+overlap — the pain point is real and users can 
+articulate it without prompting.
+Writing GTM and ECONOMICS documents forces clarity 
+on who the product is actually for and whether 
+the business model makes sense.
+
+**Blockers / what I'm stuck on:**
+Gemini API not returning live responses — 
+fallback summary is working correctly as backup.
+Resend transactional email not implemented due 
+to time constraints — leads are saved to Supabase 
+but no confirmation email is sent.
+GitHub Actions CI workflow configured but not 
+triggering — tests pass locally via npm test.
+
+**Plan for tomorrow:**
+Final check of all files and deployed URL.
+Submit via Google Form before deadline.
